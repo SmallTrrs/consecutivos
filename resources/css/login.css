@@ -1,0 +1,50 @@
+body{
+background: #ebeeef;
+}
+
+.form-login{
+
+width: 600px;
+background-color: white;
+border-radius: 10px;
+overflow: hidden;
+
+}
+
+.image-login{
+
+ background-image: url(../images/fnd-numeros.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;
+ height: 150px;
+ overflow: hidden;
+
+}
+
+.image-registro{
+
+ background-image: url(../images/registro.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;
+ height: 150px;
+ overflow: hidden;
+
+}
+
+.form-title{
+ background-color: rgba(0,0,0, 0.5);   
+ height: 150px;
+ text-align: center;
+ text-transform: uppercase;
+ font-size: 30px;
+ padding-top: 50px;
+}
+
+
+.btn-login{
+
+width: 100px;
+
+}
