@@ -16,8 +16,36 @@ class Administrador extends CI_Controller {
 
     public function index(){
         sesionActiva();
-        $this->load->view('administrador/administrador');        
+        
+        $data['consecutivos'] = $this->ultimosConsecutivos();
+        
+        $this->load->view('administrador/administrador' ,$data);        
     } # fin index
+
+    private function ultimosConsecutivos(){
+
+        $this->load->model('documento_mdl');
+        $this->load->model('consecutivo_mdl');
+
+        $anio = date('Y');
+        $consecutivos = null;
+
+        $documentos  = $this->documento_mdl->listDocumentos();
+
+             foreach ( $documentos as $documento ) {
+                     
+                 $data['anio'] = $anio;
+                 $data['documento'] = $documento->iddocumento;
+
+                 $ultimo = $this->consecutivo_mdl->ultimoConsecutivo( $data );
+
+                 $consecutivos[] = ['documento' => $documento->descripcion , 'numero' => $ultimo->numero ];
+
+             }     
+             
+          return $consecutivos;   
+
+    }
 
     public function registro(){
 
@@ -49,19 +77,27 @@ class Administrador extends CI_Controller {
               $adm = $this->usuario_mdl->registrarAdmin( $fields );               
               
                  if ( is_array( $adm ) ) {
-
+                    $this->session->set_flashdata('notificacion','<script>swal("Error '. $adm['code'].'", "Ocurrio un problema intenta nuevamente", "error" , {buttons: "Aceptar"});</script>');   
                  }else{
-
-                     $this->session->set_flashdata('notificacion','<script>swal("Administrador Creado", "", "success" , {buttons: "Aceptar"});</script>');
-                     
-                     redirect('login','location');
-                     
-                 }
-          }
-     
+                     $this->session->set_flashdata('notificacion','<script>swal("Administrador Creado", "", "success" , {buttons: "Aceptar"});</script>');                                         
+                }
+                    redirect('login','location');
+          }    
 
 
     } # fin registro admin
+
+    public function finSesion(){
+
+        $sesiones = ['ss-id', 'ss-user'];
+
+        $this->session->unset_userdata($sesiones);
+
+        redirect('login','location');
+
+    } # fin finSesion
+
+ 
 
 }
 

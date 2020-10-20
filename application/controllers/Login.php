@@ -13,14 +13,19 @@
       
     }
 
-     public function index(){      
+     public function index( $token = null ){      
              
            if ( $this->usuario_mdl->usuariosRegistrados() === 0 )
                  redirect('administrador/registro','location'); 
            elseif ( $this->session->userdata('ss-user') !== NULL )                
                 redirect('administrador','location');                         
-            else        
+            else {
+
+                 if ( $token !== null ) 
+                    $this->session->set_flashdata('notificacion','<script>swal("Token No Valido", "Contacta a tu Administrador", "info" , {buttons: "Aceptar"});</script>');                
+                    
                 $this->load->view('login/login');
+            }       
         
      } # fin index
 
@@ -30,6 +35,7 @@
 
         $fields['usuario']  = clean_field( $this->input->post('usuario'));
         $fields['password'] = clean_field( $this->input->post('password'));
+        $valido = TRUE;
 
          if ( validarLogin( $fields ) ){
 
@@ -37,7 +43,7 @@
 
              if ( count( $usuario ) > 0 ){
 
-                $password = password_verify(  $fields['password'] , $usuario[0]->password );
+                 $password = password_verify(  $fields['password'] , $usuario[0]->password );
 
                 if ( $password )  {
                     
@@ -45,20 +51,28 @@
                     $this->session->set_userdata('ss-user', $fields['usuario']);
                    
                     redirect('administrador','refresh');
+                    
                 }                
                 else{
 
-                    $this->session->set_flashdata('notificacion','<script>swal("Error !!", "Verifica Tu Informacion", "error" , {buttons: "Aceptar"});</script>');
-                    
-                    redirect('login','location',);
-                    
-                }                  
+                     $valido = FALSE;                   
+                }
 
+             }else{                
+                $valido = FALSE;
+             }
+
+             if ( ! $valido ) {
+
+                $this->session->set_flashdata('notificacion','<script>swal("Error !!", "Verifica Tu Informacion", "error" , {buttons: "Aceptar"});</script>');
+                
+                $this->session->set_flashdata('usuario', $fields['usuario']);
+                $this->session->set_flashdata('password', $fields['password']);
+                
+                redirect('login','location');
              }
 
          }
-
-
 
      } # fin acceso
  

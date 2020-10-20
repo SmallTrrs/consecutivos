@@ -55,14 +55,18 @@
                    
                       <div class="offset-md-2 col-md-3">
                       
-                      <button type="submit" class="btn btn-sm btn-login btn-outline-success pl-2"> Entrar </button>
+                      <button type="submit" class="btn btn-sm btn-login btn-dark pl-2"><i class="fa fa-sign-in"></i> Entrar </button>
                       </div>
-                      <button type="button" class="btn btn-sm btn-login btn-outline-danger pl-2"> Cancelar </button>
+                      <button type="button" class="btn btn-sm btn-login btn-danger pl-2"><i class="fa fa-times"></i> Cancelar </button>
                      
                 </div>
                 <!-- fin buttons  -->  
-
-               
+                    
+                <div class="row ">
+                     <div class="col-md-12 text-right">
+                     <a id="" class="btn btn-sm btn-secondary" href="<?=base_url('inicio');?>" role="button"> <i class="fa fa-home"></i> Pagina Principal</a>
+                     </div>
+                </div>
 
             </div>      
 

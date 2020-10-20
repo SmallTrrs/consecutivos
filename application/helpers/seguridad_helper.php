@@ -9,17 +9,3 @@ function clean_field( $field ){
     return $field;
 
 }
-
-function sesionActiva(){
-
-    $CI =& get_instance();
-
-    $CI->load->library('session');
-
-    if ( $CI->session->userdata('ss-user') === NULL )
-          redirect('login','location');         
-    else     
-         return TRUE;
-        
-
-}
