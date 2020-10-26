@@ -43,6 +43,17 @@
 
              if ( count( $usuario ) > 0 ){
 
+                  
+                  if ( $usuario[0]->activo === '0' ){
+
+                    $this->session->set_flashdata('notificacion','<script>swal("Acceso Denegado", "Contacta a tu Administrador", "info" , {buttons: "Aceptar"});</script>');
+                
+                    $this->session->set_flashdata('usuario', $fields['usuario']);
+
+                    redirect('login','location');
+
+                  }
+
                  $password = password_verify(  $fields['password'] , $usuario[0]->password );
 
                 if ( $password )  {

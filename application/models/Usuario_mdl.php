@@ -32,7 +32,7 @@
 
     function login( $data ){
  
-      $qry = $this->db->query("select idusuario, password from usuarios where BINARY usuario = '$data'");
+      $qry = $this->db->query("select idusuario, password, activo from usuarios where BINARY usuario = '$data'");
 
       return $qry->result();
      
