@@ -128,9 +128,7 @@
 
     function edicion( id ){
 
-        $('#generar').removeClass('btn-info')
-                    .addClass('btn-dark')
-                    .data('id', id)
+        $('#generar').data('id', id)
                     .html('<i class="fa fa-save"></i> Actualizar');
 
         $('#nuevo').prop('disabled', false );
@@ -150,9 +148,7 @@
         $('#area').val('0');
         $('#documento').val('0')
                        .prop('disabled', false);
-        $('#generar').removeClass('btn-dark')
-                     .addClass('btn-info')
-                     .data('id', null)
+        $('#generar').data('id', null)
                      .html('<i class="fa fa-cogs"></i> Generar Consecutivo ');               
         $('#nuevo').prop('disabled' , true );
         $('.consecutivo').html('# - - -');    

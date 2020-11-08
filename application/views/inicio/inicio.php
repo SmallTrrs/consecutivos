@@ -23,7 +23,7 @@ var ss_activa = "<?= $ss_activa ?>";
 
         <div class="row">
 
-            <div class="offset-md-2 col-md-7 bg-white shadow rounded-sm border overflow-hidden mt-3">
+            <div class="offset-md-2 col-md-7 bg-white shadow border border-light overflow-hidden mt-3" style="border-radius: 15px;" >
                 <!-- consecutivo  -->
                 <div class="row">
                     <div class="col-md-12 text-white text-center consecutivo">
@@ -119,7 +119,7 @@ var ss_activa = "<?= $ss_activa ?>";
                             <!-- buttons  -->
                             <div class="form-group row mt-3 ml-5 ">
 
-                                <button type="button" class="btn btn-info btn-sm ml-5" data-id="null" id="generar"><i
+                                <button type="button" class="btn btn-dark btn-sm ml-5" data-id="null" id="generar"><i
                                         class="fa fa-cogs"></i> Generar Consecutivo </button>
                                 <button type="button" class="btn btn-secondary btn-sm ml-3" id="nuevo" disabled><i
                                         class="fa fa-slack"></i> Nuevo Consecutivo </button>
