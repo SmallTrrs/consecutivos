@@ -150,7 +150,7 @@ class Usuarios extends CI_Controller {
           $this->session->set_flashdata('password', $fields['password']);
           $this->session->set_flashdata('passconf', $this->input->post('passconf'));          
           
-          redirect('usuarios/password/' . $fields['idusuario'],'location',);
+          redirect('usuarios/password/' . $fields['idusuario'],'location');
           
        }
        else{
@@ -164,7 +164,7 @@ class Usuarios extends CI_Controller {
               else 
                 $this->session->set_flashdata('notificacion','<script>swal("Password Cambiado", "", "success" , {buttons: "Aceptar"});</script>'); 
 
-              redirect('usuarios/password/' . $fields['idusuario'], 'location',); 
+              redirect('usuarios/password/' . $fields['idusuario'], 'location'); 
 
        }
 
